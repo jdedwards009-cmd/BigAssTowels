@@ -7,6 +7,7 @@
     try {
       var t = localStorage.getItem('bat_theme') === 'light' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-towel', t === 'light' ? 'black' : 'white');
     } catch (e) {}
   })();
 </script>
@@ -23,7 +24,7 @@
     <a href="index.html" class="brand-mark">BIG ASS <span>TOWELS</span></a>
     <nav class="main-nav">
       <a href="product.html">Shop</a>
-      <a href="index.html#specs">Specs</a>
+      <a href="about.html">About</a>
       <a href="index.html#reviews">Reviews</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
@@ -38,7 +39,8 @@
     <div class="towel towel--lg">
       <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <div class="towel__body">
-        <div class="towel__logo"><small>The Original</small>BIG<br />ASS<br />TOWEL</div>
+        <div class="towel__logo">BIG<br />ASS<br />TOWEL</div>
+        <span class="towel__tag">100% Cotton · 600GSM</span>
       </div>
       <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </div>
@@ -63,13 +65,12 @@
 
     <div class="theme-toggle-block">
       <div class="theme-toggle-row">
-        <span class="theme-toggle-copy">🌙 Dark<br />Black Towel</span>
-        <button type="button" class="theme-switch" data-theme-switch role="switch" aria-checked="false" aria-label="Toggle light and dark mode to preview the white or black towel">
+        <span class="theme-toggle-copy">🌙 Dark<br />White Towel</span>
+        <button type="button" class="theme-switch" data-theme-switch role="switch" aria-checked="false" aria-label="Toggle light and dark mode to preview the black or white towel">
           <span class="theme-switch__thumb"></span>
         </button>
-        <span class="theme-toggle-copy" style="text-align:right;">☀️ Light<br />White Towel</span>
+        <span class="theme-toggle-copy" style="text-align:right;">☀️ Light<br />Black Towel</span>
       </div>
-      <p class="theme-toggle-hint">This switch also changes the whole site's theme — whatever's showing when you add to cart is the color you get.</p>
     </div>
 
     <div class="qty-row">

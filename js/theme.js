@@ -3,6 +3,7 @@
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
+  document.documentElement.setAttribute('data-towel', towelColorForTheme(theme));
   try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
 
   document.querySelectorAll('[data-theme-switch]').forEach((el) => {

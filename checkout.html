@@ -7,6 +7,7 @@
     try {
       var t = localStorage.getItem('bat_theme') === 'light' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-towel', t === 'light' ? 'black' : 'white');
     } catch (e) {}
   })();
 </script>
@@ -22,7 +23,7 @@
     <a href="index.html" class="brand-mark">BIG ASS <span>TOWELS</span></a>
     <nav class="main-nav">
       <a href="product.html">Shop</a>
-      <a href="index.html#specs">Specs</a>
+      <a href="about.html">About</a>
       <a href="index.html#reviews">Reviews</a>
       <a href="index.html#faq">FAQ</a>
     </nav>

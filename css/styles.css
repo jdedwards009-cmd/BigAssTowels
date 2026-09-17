@@ -1,8 +1,12 @@
 /* ==========================================================================
    Big Ass Towels — core stylesheet
-   Theming: everything reads from CSS variables below. [data-theme="light"]
-   on <html> swaps the palette (and, in turn, which towel colorway reads as
-   "selected" — see js/theme.js).
+   Theming: everything reads from CSS variables below.
+
+   - [data-theme="light"] on <html> swaps the PAGE palette (background/text).
+   - [data-towel="white"] on <html> swaps the TOWEL GRAPHIC colorway. These
+     are deliberately independent: light mode surfaces the black towel
+     (contrast against a light page) and dark mode surfaces the white towel
+     (contrast against a dark page) — see js/theme.js.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -20,19 +24,20 @@
   --accent-contrast: #0a0a0a;
   --danger: #ff5c4d;
 
-  /* towel graphic — flips independently of page copy so cart thumbnails
-     can render the "other" colorway correctly */
-  --towel-fabric-1: #0f0f0f;
+  /* towel graphic — keyed off [data-towel], not [data-theme], so cart
+     thumbnails can always render the correct colorway for their line item */
+  --towel-fabric-1: #171717;
   --towel-fabric-2: #060606;
-  --towel-noise: rgba(255, 255, 255, 0.025);
-  --towel-sheen: rgba(255, 255, 255, 0.05);
-  --towel-ring: rgba(255, 255, 255, 0.04);
-  --towel-fringe-1: #1a1a1a;
+  --towel-sheen: rgba(255, 255, 255, 0.06);
+  --towel-ring: rgba(255, 255, 255, 0.05);
+  --towel-fringe-1: #1e1e1e;
   --towel-fringe-2: #0a0a0a;
   --towel-seam: rgba(0, 0, 0, 0.5);
   --towel-text: #f4f3ee;
   --towel-label: #b8b8ae;
   --towel-shadow: rgba(0, 0, 0, 0.65);
+  --towel-tex-blend: soft-light;
+  --towel-tex-opacity: 0.9;
 
   --radius: 4px;
   --maxw: 1180px;
@@ -49,18 +54,21 @@
   --text-muted: #706c5e;
   --text-body: #45433a;
   --accent-hover: #c3ec2c;
+}
 
+:root[data-towel="white"] {
   --towel-fabric-1: #ffffff;
-  --towel-fabric-2: #eceae3;
-  --towel-noise: rgba(0, 0, 0, 0.035);
-  --towel-sheen: rgba(0, 0, 0, 0.04);
-  --towel-ring: rgba(0, 0, 0, 0.07);
-  --towel-fringe-1: #f4f3ee;
+  --towel-fabric-2: #ebe9e2;
+  --towel-sheen: rgba(0, 0, 0, 0.05);
+  --towel-ring: rgba(0, 0, 0, 0.08);
+  --towel-fringe-1: #f6f5f0;
   --towel-fringe-2: #e6e3d8;
   --towel-seam: rgba(0, 0, 0, 0.14);
   --towel-text: #0a0a0a;
   --towel-label: #706c5e;
-  --towel-shadow: rgba(20, 18, 10, 0.18);
+  --towel-shadow: rgba(20, 18, 10, 0.22);
+  --towel-tex-blend: multiply;
+  --towel-tex-opacity: 0.5;
 }
 
 * { box-sizing: border-box; }
@@ -230,7 +238,6 @@ p { color: var(--text-body); margin: 0 0 1em; }
   width: min(360px, 78vw);
   aspect-ratio: 90 / 180;
   background:
-    repeating-linear-gradient(45deg, var(--towel-noise) 0 2px, transparent 2px 5px),
     radial-gradient(circle at 30% 20%, var(--towel-sheen), transparent 55%),
     linear-gradient(180deg, var(--towel-fabric-1), var(--towel-fabric-2));
   border-radius: 6px;
@@ -242,10 +249,23 @@ p { color: var(--text-body); margin: 0 0 1em; }
   container-type: inline-size;
 }
 .towel--lg { width: min(400px, 82vw); }
+/* Procedural terry-cloth texture: a bump-lit noise SVG blended over the
+   fabric color. Blend mode/opacity flip per colorway (see --towel-tex-*). */
+.towel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/towel-texture.svg');
+  background-size: cover;
+  mix-blend-mode: var(--towel-tex-blend);
+  opacity: var(--towel-tex-opacity);
+  pointer-events: none;
+}
 .towel__fringe {
   height: 16px;
   display: flex;
   flex-shrink: 0;
+  position: relative;
 }
 .towel__fringe span {
   flex: 1;
@@ -259,25 +279,40 @@ p { color: var(--text-body); margin: 0 0 1em; }
   align-items: center;
   justify-content: center;
   gap: 2px;
-  padding: 0 9%;
+  padding: 0 3%;
+  position: relative;
 }
 .towel__logo {
   font-family: var(--font-display);
   color: var(--towel-text);
   text-align: center;
-  line-height: 0.92;
+  line-height: 0.86;
   letter-spacing: -0.01em;
-  font-size: clamp(20px, 13.5cqw, 56px);
+  font-size: clamp(26px, 19cqw, 100px);
   width: 100%;
 }
 .towel__logo small {
   display: block;
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 0.22em;
+  font-size: 0.16em;
   letter-spacing: 0.35em;
   color: var(--towel-label);
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+}
+.towel__tag {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--towel-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.75;
 }
 
 .towel-badges {
@@ -299,31 +334,9 @@ p { color: var(--text-body); margin: 0 0 1em; }
 }
 .badge strong { color: var(--accent); }
 
-/* ---------- Feature grid ---------- */
 .section { padding: 72px 0; }
 .section-head { text-align: center; max-width: 620px; margin: 0 auto 48px; }
 .section-head h2 { font-size: clamp(26px, 3.6vw, 40px); margin-bottom: 14px; }
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 24px;
-}
-.feature-card {
-  background: var(--bg-soft);
-  border: 1px solid var(--surface-border);
-  border-radius: 8px;
-  padding: 28px 24px;
-}
-.feature-card .num {
-  font-family: var(--font-display);
-  color: var(--accent);
-  font-size: 28px;
-  margin-bottom: 12px;
-  display: block;
-}
-.feature-card h3 { font-size: 16px; margin-bottom: 8px; letter-spacing: 0.02em; }
-.feature-card p { margin: 0; font-size: 14px; }
 
 /* ---------- Product teaser ---------- */
 .product-teaser {
@@ -446,7 +459,54 @@ p { color: var(--text-body); margin: 0 0 1em; }
   transition: transform 0.22s ease;
 }
 :root[data-theme="light"] .theme-switch__thumb { transform: translateX(28px); }
-.theme-toggle-hint { font-size: 12px; color: var(--text-muted); margin-top: 10px; margin-bottom: 0; }
+
+/* ---------- Social icons ---------- */
+.social-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.social-icon svg { width: 17px; height: 17px; fill: currentColor; }
+.social-icon:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
+
+/* ---------- About page ---------- */
+.about-hero { padding: 64px 0 16px; text-align: center; }
+.about-hero h1 { font-size: clamp(32px, 5vw, 56px); margin-top: 10px; }
+.about-lede {
+  max-width: 640px;
+  margin: 24px auto 0;
+  font-size: 17px;
+}
+.usecases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+.usecase-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  padding: 28px 24px;
+}
+.usecase-card .emoji { font-size: 28px; display: block; margin-bottom: 14px; }
+.usecase-card h3 { font-size: 16px; margin-bottom: 8px; letter-spacing: 0.02em; }
+.usecase-card p { margin: 0; font-size: 14px; }
+.about-social {
+  text-align: center;
+  padding-top: 8px;
+}
+.about-social .social-row { justify-content: center; margin-top: 20px; }
 
 /* ---------- Footer ---------- */
 .site-footer {
@@ -469,6 +529,7 @@ p { color: var(--text-body); margin: 0 0 1em; }
 .footer-grid ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .footer-grid a { font-size: 14px; color: var(--text-body); }
 .footer-grid a:hover { color: var(--accent); }
+.footer-grid .social-row { margin-top: 4px; }
 .footer-bottom {
   display: flex;
   justify-content: space-between;

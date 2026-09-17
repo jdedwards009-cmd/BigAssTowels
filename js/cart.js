@@ -30,9 +30,15 @@ function getTheme() {
   }
 }
 
-// Dark mode ships the black towel, light mode ships the white one.
+// Colorway pairs with the theme for contrast against the page: light mode
+// (light page) surfaces the black towel, dark mode (dark page) surfaces the
+// white towel.
 function variantIdForTheme(theme) {
-  return theme === 'light' ? 'bat-white-90x180' : 'bat-black-90x180';
+  return theme === 'light' ? 'bat-black-90x180' : 'bat-white-90x180';
+}
+
+function towelColorForTheme(theme) {
+  return theme === 'light' ? 'black' : 'white';
 }
 
 function getCart() {

@@ -7,6 +7,7 @@
     try {
       var t = localStorage.getItem('bat_theme') === 'light' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-towel', t === 'light' ? 'black' : 'white');
     } catch (e) {}
   })();
 </script>
@@ -23,7 +24,7 @@
     <a href="index.html" class="brand-mark">BIG ASS <span>TOWELS</span></a>
     <nav class="main-nav">
       <a href="product.html">Shop</a>
-      <a href="index.html#specs">Specs</a>
+      <a href="about.html">About</a>
       <a href="index.html#reviews">Reviews</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
@@ -43,7 +44,7 @@
     </p>
     <div class="hero-ctas">
       <a href="product.html" class="btn btn-primary">Shop The Towel — $59</a>
-      <a href="#specs" class="btn btn-outline">See the specs</a>
+      <a href="#reviews" class="btn btn-outline">Read reviews</a>
     </div>
   </div>
 </section>
@@ -52,7 +53,8 @@
   <div class="towel towel--lg">
     <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <div class="towel__body">
-      <div class="towel__logo"><small>The Original</small>BIG<br />ASS<br />TOWEL</div>
+      <div class="towel__logo">BIG<br />ASS<br />TOWEL</div>
+      <span class="towel__tag">100% Cotton · 600GSM</span>
     </div>
     <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   </div>
@@ -66,44 +68,14 @@
   </div>
 </div>
 
-<section class="section" id="specs">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Why it's called "big ass"</h2>
-      <p>Most "oversized" towels are really just regular towels with a marketing budget. Ours is not.</p>
-    </div>
-    <div class="features">
-      <div class="feature-card">
-        <span class="num">01</span>
-        <h3>90 × 180 CM</h3>
-        <p>Nearly double the surface area of a standard bath towel — full wraparound coverage, no awkward tucking.</p>
-      </div>
-      <div class="feature-card">
-        <span class="num">02</span>
-        <h3>600 GSM Cotton</h3>
-        <p>Heavyweight combed cotton terry that stays plush and absorbent wash after wash.</p>
-      </div>
-      <div class="feature-card">
-        <span class="num">03</span>
-        <h3>True black. True white.</h3>
-        <p>Reactive-dyed black that resists grey-out, and a bright white that resists yellowing — both hold their color wash after wash.</p>
-      </div>
-      <div class="feature-card">
-        <span class="num">04</span>
-        <h3>Bold wordmark print</h3>
-        <p>The BIG ASS TOWEL logo, screen-printed for durability so it survives the wash, not just the photo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="product-teaser">
   <div class="wrap">
     <div class="towel-stage" style="padding:0;">
       <div class="towel">
         <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <div class="towel__body">
-          <div class="towel__logo"><small>The Original</small>BIG<br />ASS<br />TOWEL</div>
+          <div class="towel__logo">BIG<br />ASS<br />TOWEL</div>
+          <span class="towel__tag">100% Cotton · 600GSM</span>
         </div>
         <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       </div>
@@ -184,11 +156,11 @@
       </details>
       <details class="accordion-item">
         <summary>What's the difference between the black and white towel?</summary>
-        <div class="accordion-body">Same 90 × 180cm, same 600GSM combed cotton, same wordmark print — just the fabric color and the ink color (white print on black, black print on white). Head to the <a href="product.html" style="color:var(--accent);">product page</a> and flip the light/dark switch to preview each one; it also swaps the whole site's theme to match.</div>
+        <div class="accordion-body">Same 90 × 180cm, same 600GSM combed cotton, same wordmark print — just the fabric color and the ink color (white print on black, black print on white). Head to the <a href="product.html" style="color:var(--accent);">product page</a> and flip the light/dark switch to preview each one.</div>
       </details>
       <details class="accordion-item">
         <summary>How do I choose a color?</summary>
-        <div class="accordion-body">On the product page there's a light/dark mode toggle. Dark mode previews the black towel, light mode previews the white towel — whichever is showing when you hit "Add to Cart" is the one you get.</div>
+        <div class="accordion-body">On the product page there's a light/dark mode toggle. Light mode previews the black towel, dark mode previews the white towel — whichever is showing when you hit "Add to Cart" is the one you get.</div>
       </details>
       <details class="accordion-item">
         <summary>How is it manufactured?</summary>
@@ -220,6 +192,12 @@
       <div>
         <div class="brand-mark" style="margin-bottom:12px;">BIG ASS <span>TOWELS</span></div>
         <p style="max-width:280px;">Absurdly oversized towels in black or white. 90 × 180cm, made for people who are done with towels that don't cover them.</p>
+        <div class="social-row">
+          <a class="social-icon" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.97.24 2.43.4.61.24 1.05.52 1.5.97.45.45.73.89.97 1.5.16.46.35 1.26.4 2.43.06 1.25.07 1.65.07 4.85s-.01 3.6-.07 4.85c-.05 1.17-.24 1.97-.4 2.43a4.1 4.1 0 0 1-.97 1.5 4.1 4.1 0 0 1-1.5.97c-.46.16-1.26.35-2.43.4-1.25.06-1.65.07-4.85.07s-3.6-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4a4.1 4.1 0 0 1-1.5-.97 4.1 4.1 0 0 1-.97-1.5c-.16-.46-.35-1.26-.4-2.43C2.21 15.6 2.2 15.2 2.2 12s.01-3.6.07-4.85c.05-1.17.24-1.97.4-2.43.24-.61.52-1.05.97-1.5.45-.45.89-.73 1.5-.97.46-.16 1.26-.35 2.43-.4C8.4 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-1.02.05-1.57.21-1.94.35-.49.19-.84.42-1.2.79-.37.36-.6.71-.79 1.2-.14.37-.3.92-.35 1.94-.06 1.24-.07 1.6-.07 4.74s.01 3.5.07 4.74c.05 1.02.21 1.57.35 1.94.19.49.42.84.79 1.2.36.37.71.6 1.2.79.37.14.92.3 1.94.35 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c1.02-.05 1.57-.21 1.94-.35.49-.19.84-.42 1.2-.79.37-.36.6-.71.79-1.2.14-.37.3-.92.35-1.94.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.05-1.02-.21-1.57-.35-1.94a3.2 3.2 0 0 0-.79-1.2 3.2 3.2 0 0 0-1.2-.79c-.37-.14-.92-.3-1.94-.35C15.5 4.01 15.14 4 12 4zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3zm5.15-1.99a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z"/></svg></a>
+          <a class="social-icon" href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14.5 2h2.6c.16 1.4.86 2.6 2 3.4.8.6 1.8 1 2.9 1.1v2.7c-1.6-.02-3.1-.5-4.4-1.4v6.8c0 3.4-2.7 6.1-6.1 6.1S5.4 17 5.4 13.6c0-3.3 2.6-5.9 5.8-6.1v2.8c-1.7.2-3 1.6-3 3.3 0 1.8 1.5 3.3 3.3 3.3s3.3-1.5 3.3-3.3V2z"/></svg></a>
+          <a class="social-icon" href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.9L4.4 22H1.3l8.1-9.3L1 2h7l4.9 6.3L18.9 2zm-1.2 18h1.9L7.4 4H5.4l12.3 16z"/></svg></a>
+          <a class="social-icon" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8.4h2.8l.4-3.3h-3.2V8.1c0-.95.27-1.6 1.63-1.6H17V3.5C16.7 3.46 15.7 3.4 14.5 3.4c-2.5 0-4.2 1.5-4.2 4.4v2.5H7.5v3.3h2.8V22h3.2z"/></svg></a>
+        </div>
       </div>
       <div>
         <h4>Shop</h4>
@@ -231,7 +209,7 @@
       <div>
         <h4>Info</h4>
         <ul>
-          <li><a href="index.html#specs">Specs</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="index.html#reviews">Reviews</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="product.html#supplier">Supplier</a></li>

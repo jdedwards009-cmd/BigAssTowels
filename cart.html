@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Your Cart | Big Ass Towels</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand-mark">BIG ASS <span>TOWELS</span></a>
+    <nav class="main-nav">
+      <a href="product.html">Shop</a>
+      <a href="index.html#specs">Specs</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <a href="cart.html" class="cart-link btn btn-outline" style="padding:10px 16px;">
+      Cart <span class="cart-count" data-cart-count>0</span>
+    </a>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <h1>Your Cart</h1>
+</div>
+
+<div class="wrap" id="cart-root"></div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>&copy; 2026 Big Ass Towels. All rights reserved.</span>
+      <span>Demo storefront — not connected to a live payment processor.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script>
+function renderCartPage() {
+  const root = document.getElementById('cart-root');
+  const lines = cartLines();
+
+  if (lines.length === 0) {
+    root.innerHTML = `
+      <div class="empty-state">
+        <span class="eyebrow">Nothing here yet</span>
+        <h2 style="font-family:var(--font-display); font-size:clamp(24px,3vw,34px); margin-top:10px;">Your cart is empty</h2>
+        <p>Go grab a towel that actually covers you.</p>
+        <a href="product.html" class="btn btn-primary">Shop The Big Ass Towel</a>
+      </div>`;
+    return;
+  }
+
+  const subtotal = cartSubtotal();
+  const shipping = subtotal > 0 ? 8 : 0;
+  const total = subtotal + shipping;
+
+  const rows = lines.map(line => `
+    <tr>
+      <td>
+        <div class="cart-item-info">
+          <div class="cart-thumb">BIG ASS<br/>TOWELS</div>
+          <div>
+            <div class="cart-item-name">${line.name}</div>
+            <div class="cart-item-meta">${line.variant}</div>
+            <button class="remove-link" data-remove="${line.id}">Remove</button>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="qty-control">
+          <button type="button" data-line-step="-1" data-line-id="${line.id}">–</button>
+          <input type="text" value="${line.qty}" readonly />
+          <button type="button" data-line-step="1" data-line-id="${line.id}">+</button>
+        </div>
+      </td>
+      <td>$${line.price}</td>
+      <td>$${line.lineTotal}</td>
+    </tr>
+  `).join('');
+
+  root.innerHTML = `
+    <div class="cart-layout">
+      <table class="cart-table">
+        <thead>
+          <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span>$${subtotal}</span></div>
+        <div class="summary-row"><span>Shipping</span><span>$${shipping}</span></div>
+        <div class="summary-row total"><span>Total</span><span>$${total}</span></div>
+        <a href="checkout.html" class="btn btn-primary btn-block" style="margin-top:20px;">Checkout</a>
+        <a href="product.html" class="btn btn-outline btn-block" style="margin-top:10px;">Continue Shopping</a>
+      </div>
+    </div>
+  `;
+
+  root.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => { removeFromCart(btn.dataset.remove); renderCartPage(); });
+  });
+  root.querySelectorAll('[data-line-step]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cart = getCart();
+      const id = btn.dataset.lineId;
+      const next = (cart[id] || 1) + parseInt(btn.dataset.lineStep, 10);
+      setQty(id, Math.min(10, Math.max(0, next)));
+      renderCartPage();
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', renderCartPage);
+</script>
+</body>
+</html>

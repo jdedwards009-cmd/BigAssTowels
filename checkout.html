@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Checkout | Big Ass Towels</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand-mark">BIG ASS <span>TOWELS</span></a>
+    <nav class="main-nav">
+      <a href="product.html">Shop</a>
+      <a href="index.html#specs">Specs</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <a href="cart.html" class="cart-link btn btn-outline" style="padding:10px 16px;">
+      Cart <span class="cart-count" data-cart-count>0</span>
+    </a>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <h1>Checkout</h1>
+</div>
+
+<div class="wrap" id="checkout-root"></div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>&copy; 2026 Big Ass Towels. All rights reserved.</span>
+      <span>Demo storefront — not connected to a live payment processor.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script>
+function renderCheckout() {
+  const root = document.getElementById('checkout-root');
+  const lines = cartLines();
+
+  if (lines.length === 0) {
+    root.innerHTML = `
+      <div class="empty-state">
+        <h2 style="font-family:var(--font-display); font-size:clamp(24px,3vw,34px);">Your cart is empty</h2>
+        <p>Add a towel before checking out.</p>
+        <a href="product.html" class="btn btn-primary">Shop The Big Ass Towel</a>
+      </div>`;
+    return;
+  }
+
+  const subtotal = cartSubtotal();
+  const shipping = 8;
+  const total = subtotal + shipping;
+
+  const lineHtml = lines.map(l => `
+    <div class="summary-row"><span>${l.qty} × ${l.name} (${l.variant})</span><span>$${l.lineTotal}</span></div>
+  `).join('');
+
+  root.innerHTML = `
+    <div class="cart-layout">
+      <form class="checkout-form" id="checkout-form">
+        <div class="demo-note">
+          This is a demo checkout — no real payment is processed. Wire this form up to
+          Stripe Checkout / Shopify / your PSP of choice to accept live payments.
+        </div>
+
+        <div class="form-section-title">Contact</div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" type="email" required placeholder="you@example.com" />
+        </div>
+
+        <div class="form-section-title">Shipping Address</div>
+        <div class="form-row two">
+          <div class="form-row"><label for="fname">First name</label><input id="fname" required /></div>
+          <div class="form-row"><label for="lname">Last name</label><input id="lname" required /></div>
+        </div>
+        <div class="form-row"><label for="addr">Address</label><input id="addr" required /></div>
+        <div class="form-row two">
+          <div class="form-row"><label for="city">City</label><input id="city" required /></div>
+          <div class="form-row"><label for="zip">Postal code</label><input id="zip" required /></div>
+        </div>
+        <div class="form-row"><label for="country">Country</label><input id="country" required placeholder="United States" /></div>
+
+        <div class="form-section-title">Payment</div>
+        <div class="form-row"><label for="card">Card number</label><input id="card" required placeholder="4242 4242 4242 4242" /></div>
+        <div class="form-row two">
+          <div class="form-row"><label for="exp">Expiry</label><input id="exp" required placeholder="MM/YY" /></div>
+          <div class="form-row"><label for="cvc">CVC</label><input id="cvc" required placeholder="123" /></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:10px;">Place Order — $${total}</button>
+      </form>
+
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        ${lineHtml}
+        <div class="summary-row" style="margin-top:12px;"><span>Subtotal</span><span>$${subtotal}</span></div>
+        <div class="summary-row"><span>Shipping</span><span>$${shipping}</span></div>
+        <div class="summary-row total"><span>Total</span><span>$${total}</span></div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('checkout-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const orderId = 'BAT-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+    clearCart();
+    root.innerHTML = `
+      <div class="confirmation">
+        <span class="eyebrow">Order placed</span>
+        <h2 style="font-family:var(--font-display); font-size:clamp(28px,4vw,44px); margin-top:10px;">Thanks for going big.</h2>
+        <div class="order-id">Order #${orderId}</div>
+        <p style="max-width:420px; margin:0 auto 24px;">This order was simulated for demo purposes — no payment was charged and no towel will ship. Connect a real payment processor to go live.</p>
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+      </div>
+    `;
+  });
+}
+
+document.addEventListener('DOMContentLoaded', renderCheckout);
+</script>
+</body>
+</html>

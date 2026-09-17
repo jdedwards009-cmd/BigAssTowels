@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#0a0a0a"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="30" fill="#f4f3ee" letter-spacing="-1">BA</text>
+  <rect x="8" y="50" width="48" height="4" fill="#d7ff3e"/>
+</svg>

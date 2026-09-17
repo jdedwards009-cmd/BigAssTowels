@@ -1,16 +1,39 @@
 /* Big Ass Towels — cart engine (localStorage-backed, no backend required) */
 
 const CART_KEY = 'bat_cart_v1';
+const THEME_KEY = 'bat_theme';
 
 const CATALOG = {
   'bat-black-90x180': {
     id: 'bat-black-90x180',
     name: 'The Big Ass Towel',
     variant: 'Black / 90 × 180 cm',
+    color: 'black',
+    price: 59,
+    compareAt: 79,
+  },
+  'bat-white-90x180': {
+    id: 'bat-white-90x180',
+    name: 'The Big Ass Towel',
+    variant: 'White / 90 × 180 cm',
+    color: 'white',
     price: 59,
     compareAt: 79,
   },
 };
+
+function getTheme() {
+  try {
+    return localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark';
+  } catch (e) {
+    return 'dark';
+  }
+}
+
+// Dark mode ships the black towel, light mode ships the white one.
+function variantIdForTheme(theme) {
+  return theme === 'light' ? 'bat-white-90x180' : 'bat-black-90x180';
+}
 
 function getCart() {
   try {

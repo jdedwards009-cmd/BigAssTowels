@@ -26,14 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Add to cart (product page)
+  // Add to cart (product page) — variant id tracks the current theme's colorway
   const addBtn = document.querySelector('[data-add-to-cart]');
   if (addBtn) {
     addBtn.addEventListener('click', () => {
       const id = addBtn.dataset.addToCart;
       const qty = parseInt(qtyInput ? qtyInput.value : 1, 10) || 1;
+      const color = CATALOG[id] ? CATALOG[id].color : '';
       addToCart(id, qty);
-      showToast(`Added ${qty} × Big Ass Towel to your cart`);
+      showToast(`Added ${qty} × ${color} Big Ass Towel to your cart`);
     });
   }
 });

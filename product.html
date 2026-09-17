@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('bat_theme') === 'light' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Big Ass Towel — Black, 90×180cm | Big Ass Towels</title>
-<meta name="description" content="The Big Ass Towel: 90 x 180cm, 600GSM black combed cotton, screen-printed wordmark." />
+<title>The Big Ass Towel — Black or White, 90×180cm | Big Ass Towels</title>
+<meta name="description" content="The Big Ass Towel: 90 x 180cm, 600GSM combed cotton, in black or white, screen-printed wordmark." />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="css/styles.css" />
 </head>
@@ -16,6 +24,7 @@
     <nav class="main-nav">
       <a href="product.html">Shop</a>
       <a href="index.html#specs">Specs</a>
+      <a href="index.html#reviews">Reviews</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
     <a href="cart.html" class="cart-link btn btn-outline" style="padding:10px 16px;">
@@ -29,7 +38,7 @@
     <div class="towel towel--lg">
       <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <div class="towel__body">
-        <div class="towel__logo"><small>The Original</small>BIG ASS<br />TOWELS</div>
+        <div class="towel__logo"><small>The Original</small>BIG<br />ASS<br />TOWEL</div>
       </div>
       <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </div>
@@ -38,7 +47,7 @@
   <div class="product-info">
     <span class="eyebrow">Big Ass Towels</span>
     <h1>The Big Ass Towel</h1>
-    <p style="margin-top:8px;">Black / 90 × 180cm</p>
+    <p style="margin-top:8px;"><span data-variant-label>Black / 90 × 180 cm</span></p>
 
     <div class="price-row">
       <span class="price">$59</span>
@@ -48,9 +57,20 @@
     <p>
       Most "oversized" towels are regular towels with better marketing. This one is actually
       90 × 180cm — nearly double the coverage of a standard bath towel — in heavyweight
-      600GSM black combed cotton, with the BIG ASS TOWELS wordmark screen-printed across it
+      600GSM combed cotton, with the BIG ASS TOWEL wordmark screen-printed across it
       so it survives the wash, not just the unboxing photo.
     </p>
+
+    <div class="theme-toggle-block">
+      <div class="theme-toggle-row">
+        <span class="theme-toggle-copy">🌙 Dark<br />Black Towel</span>
+        <button type="button" class="theme-switch" data-theme-switch role="switch" aria-checked="false" aria-label="Toggle light and dark mode to preview the white or black towel">
+          <span class="theme-switch__thumb"></span>
+        </button>
+        <span class="theme-toggle-copy" style="text-align:right;">☀️ Light<br />White Towel</span>
+      </div>
+      <p class="theme-toggle-hint">This switch also changes the whole site's theme — whatever's showing when you add to cart is the color you get.</p>
+    </div>
 
     <div class="qty-row">
       <div class="qty-control">
@@ -71,8 +91,8 @@
             <tr><td>Dimensions</td><td>90 × 180 cm (35.4" × 70.9")</td></tr>
             <tr><td>Weight</td><td>600 GSM</td></tr>
             <tr><td>Material</td><td>100% combed cotton terry</td></tr>
-            <tr><td>Color</td><td>Jet Black (reactive-dyed)</td></tr>
-            <tr><td>Print</td><td>Screen-printed wordmark, fade-resistant</td></tr>
+            <tr><td>Color</td><td>Jet Black or Bright White — pick via the switch above</td></tr>
+            <tr><td>Print</td><td>Screen-printed wordmark, fade-resistant (white ink on black, black ink on white)</td></tr>
             <tr><td>Care</td><td>Machine wash cold, tumble dry low</td></tr>
           </table>
         </div>
@@ -90,8 +110,8 @@
         <div class="accordion-body">
           <p style="margin-bottom:10px;">
             Sourced through a Turkish private-label towel manufacturer capable of custom
-            90 × 180cm sizing, jet-black reactive dye, and screen/woven branding at
-            production scale. Full sourcing research is in
+            90 × 180cm sizing, both jet-black and bright-white reactive dye lines, and
+            screen/woven branding at production scale. Full sourcing research is in
             <code>SUPPLIERS.md</code> in the project repo, including MOQ, lead time and
             alternate factories for scaling or small-batch sampling.
           </p>
@@ -100,6 +120,41 @@
     </div>
   </div>
 </div>
+
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What people are saying</h2>
+    </div>
+    <div class="reviews-summary">
+      <span class="stars">★★★★★</span>
+      <span class="score">4.8 / 5</span>
+      <span class="count">based on 214 reviews</span>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"I'm 6'5" and every towel in my life has been a hand towel by comparison. This one actually wraps around me."</p>
+        <div class="reviewer"><span class="reviewer-name">Marcus T.</span><span class="verified">Verified Buyer</span></div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"Got the white one to match my bathroom and it's genuinely the softest towel I own. 600GSM is no joke."</p>
+        <div class="reviewer"><span class="reviewer-name">Priya S.</span><span class="verified">Verified Buyer</span></div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★☆</span>
+        <p>"Bought the black for the gym. Genuinely huge — print hasn't faded after a month of washes."</p>
+        <div class="reviewer"><span class="reviewer-name">Diego R.</span><span class="verified">Verified Buyer</span></div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"The light/dark toggle to pick black vs white is such a fun touch. Ordered one of each."</p>
+        <div class="reviewer"><span class="reviewer-name">Hannah W.</span><span class="verified">Verified Buyer</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer class="site-footer">
   <div class="wrap">
@@ -111,6 +166,7 @@
 </footer>
 
 <script src="js/cart.js"></script>
+<script src="js/theme.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

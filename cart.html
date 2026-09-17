@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('bat_theme') === 'light' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Your Cart | Big Ass Towels</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -15,6 +23,7 @@
     <nav class="main-nav">
       <a href="product.html">Shop</a>
       <a href="index.html#specs">Specs</a>
+      <a href="index.html#reviews">Reviews</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
     <a href="cart.html" class="cart-link btn btn-outline" style="padding:10px 16px;">
@@ -39,6 +48,7 @@
 </footer>
 
 <script src="js/cart.js"></script>
+<script src="js/theme.js"></script>
 <script>
 function renderCartPage() {
   const root = document.getElementById('cart-root');
@@ -63,7 +73,7 @@ function renderCartPage() {
     <tr>
       <td>
         <div class="cart-item-info">
-          <div class="cart-thumb">BIG ASS<br/>TOWELS</div>
+          <div class="cart-thumb cart-thumb--${line.color}">BIG<br/>ASS<br/>TOWEL</div>
           <div>
             <div class="cart-item-name">${line.name}</div>
             <div class="cart-item-meta">${line.variant}</div>

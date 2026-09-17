@@ -62,8 +62,12 @@ locked, for materially better unit economics at 300+ pieces.
 |---|---|
 | Finished size | 90cm × 180cm |
 | Fabric | 100% combed cotton terry, 600GSM |
-| Color | Jet black (reactive dye) |
-| Branding | "BIG ASS TOWELS" wordmark, screen print or woven jacquard, white/off-white ink |
+| Colorways | Jet black (reactive dye) **and** bright white — two SKUs, same spec |
+| Branding | "BIG ASS TOWEL" wordmark (stacked 3-line lockup), screen print or woven jacquard — white/off-white ink on the black towel, black ink on the white towel |
 | Edge finish | Fringed short ends (90cm sides) |
 | Packaging | Individual poly bag + hang tag |
-| Target MOQ (launch) | 25–50 units (sample/Contrado) → 300+ units (Turkish mill) |
+| Target MOQ (launch) | 25–50 units per colorway (sample/Contrado) → 300+ units per colorway (Turkish mill) |
+
+Note: request the white colorway be a true, optical-brightener-free bright white
+(rather than an OBA-heavy white) so it doesn't yellow unevenly under UV/sunlight —
+worth confirming with each supplier's fabric spec sheet.

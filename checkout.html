@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('bat_theme') === 'light' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Checkout | Big Ass Towels</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -15,6 +23,7 @@
     <nav class="main-nav">
       <a href="product.html">Shop</a>
       <a href="index.html#specs">Specs</a>
+      <a href="index.html#reviews">Reviews</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
     <a href="cart.html" class="cart-link btn btn-outline" style="padding:10px 16px;">
@@ -39,6 +48,7 @@
 </footer>
 
 <script src="js/cart.js"></script>
+<script src="js/theme.js"></script>
 <script>
 function renderCheckout() {
   const root = document.getElementById('checkout-root');

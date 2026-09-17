@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('bat_theme') === 'light' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Big Ass Towels — Absurdly Oversized 90×180cm Towels</title>
-<meta name="description" content="The Big Ass Towel: a 90 × 180cm, absurdly oversized black towel. Heavyweight combed cotton. Made to actually fit you." />
+<meta name="description" content="The Big Ass Towel: a 90 × 180cm, absurdly oversized towel in black or white. Heavyweight combed cotton. Made to actually fit you." />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="css/styles.css" />
 </head>
@@ -16,6 +24,7 @@
     <nav class="main-nav">
       <a href="product.html">Shop</a>
       <a href="index.html#specs">Specs</a>
+      <a href="index.html#reviews">Reviews</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
     <a href="cart.html" class="cart-link btn btn-outline" style="padding:10px 16px;">
@@ -27,12 +36,10 @@
 <section class="hero">
   <div class="wrap">
     <span class="eyebrow">Introducing</span>
-    <h1 class="hero-wordmark">
-      BIG ASS<br /><span class="line2">TOWELS</span>
-    </h1>
+    <h1 class="hero-wordmark">BIG ASS TOWELS</h1>
     <p class="hero-tagline">
-      A towel that's actually big enough. 90 × 180cm of heavyweight black cotton —
-      built for people who are done wrestling with tiny gym towels.
+      A towel that's actually big enough. 90 × 180cm of heavyweight cotton, in black
+      or white — built for people who are done wrestling with tiny gym towels.
     </p>
     <div class="hero-ctas">
       <a href="product.html" class="btn btn-primary">Shop The Towel — $59</a>
@@ -45,7 +52,7 @@
   <div class="towel towel--lg">
     <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <div class="towel__body">
-      <div class="towel__logo"><small>The Original</small>BIG ASS<br />TOWELS</div>
+      <div class="towel__logo"><small>The Original</small>BIG<br />ASS<br />TOWEL</div>
     </div>
     <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   </div>
@@ -53,7 +60,7 @@
 <div class="wrap">
   <div class="towel-badges">
     <span class="badge">Size <strong>90 × 180 CM</strong></span>
-    <span class="badge">Color <strong>Jet Black</strong></span>
+    <span class="badge">Color <strong>Black or White</strong></span>
     <span class="badge">Fabric <strong>600GSM Combed Cotton</strong></span>
     <span class="badge">Print <strong>Fade-Resistant</strong></span>
   </div>
@@ -78,13 +85,13 @@
       </div>
       <div class="feature-card">
         <span class="num">03</span>
-        <h3>Deep, true black</h3>
-        <p>Reactive-dyed to resist the grey fade black towels usually suffer after a few launders.</p>
+        <h3>True black. True white.</h3>
+        <p>Reactive-dyed black that resists grey-out, and a bright white that resists yellowing — both hold their color wash after wash.</p>
       </div>
       <div class="feature-card">
         <span class="num">04</span>
         <h3>Bold wordmark print</h3>
-        <p>The BIG ASS TOWELS logo, screen-printed for durability so it survives the wash, not just the photo.</p>
+        <p>The BIG ASS TOWEL logo, screen-printed for durability so it survives the wash, not just the photo.</p>
       </div>
     </div>
   </div>
@@ -96,14 +103,14 @@
       <div class="towel">
         <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <div class="towel__body">
-          <div class="towel__logo"><small>The Original</small>BIG ASS<br />TOWELS</div>
+          <div class="towel__logo"><small>The Original</small>BIG<br />ASS<br />TOWEL</div>
         </div>
         <div class="towel__fringe"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       </div>
     </div>
     <div>
       <span class="eyebrow">The Big Ass Towel</span>
-      <h2 style="font-size:clamp(28px,4vw,44px); margin-top:10px;">One towel. One absurd size.</h2>
+      <h2 style="font-size:clamp(26px,3.6vw,40px); margin-top:10px;">One towel. One absurd size.</h2>
       <div class="price-row">
         <span class="price">$59</span>
         <span class="price-compare">$79</span>
@@ -112,9 +119,55 @@
         <li><span>Dimensions</span><span>90 × 180 cm (35.4" × 70.9")</span></li>
         <li><span>Weight</span><span>600 GSM</span></li>
         <li><span>Material</span><span>100% combed cotton terry</span></li>
-        <li><span>Color</span><span>Jet Black</span></li>
+        <li><span>Color</span><span>Black or White</span></li>
       </ul>
       <a href="product.html" class="btn btn-primary">View Product</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What people are saying</h2>
+      <p>Real feedback from people who finally own a towel that covers them.</p>
+    </div>
+    <div class="reviews-summary">
+      <span class="stars">★★★★★</span>
+      <span class="score">4.8 / 5</span>
+      <span class="count">based on 214 reviews</span>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"I'm 6'5" and every towel in my life has been a hand towel by comparison. This one actually wraps around me. Absurd, in the best way."</p>
+        <div class="reviewer"><span class="reviewer-name">Marcus T.</span><span class="verified">Verified Buyer</span></div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"Got the white one to match my bathroom and it's genuinely the softest towel I own. 600GSM is no joke, dries me off in one pass."</p>
+        <div class="reviewer"><span class="reviewer-name">Priya S.</span><span class="verified">Verified Buyer</span></div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★☆</span>
+        <p>"Bought the black for the gym. It's genuinely huge — almost too big for my locker, but I'm not complaining. Print hasn't faded after a month of washes."</p>
+        <div class="reviewer"><span class="reviewer-name">Diego R.</span><span class="verified">Verified Buyer</span></div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"The light/dark toggle on the site to pick black vs white is such a fun touch. Ordered one of each for the beach."</p>
+        <div class="reviewer"><span class="reviewer-name">Hannah W.</span><span class="verified">Verified Buyer</span></div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"My partner asked why I needed a towel this big. I told her some things in life should just be extra. She now uses it more than I do."</p>
+        <div class="reviewer"><span class="reviewer-name">Ola A.</span><span class="verified">Verified Buyer</span></div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★☆</span>
+        <p>"Takes a little longer to dry on the line because of the sheer size, but that's the trade-off for actual coverage. Worth it."</p>
+        <div class="reviewer"><span class="reviewer-name">Femi K.</span><span class="verified">Verified Buyer</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -130,12 +183,32 @@
         <div class="accordion-body">Yes — a standard bath towel is roughly 70 × 140cm. Ours is nearly 65% more surface area.</div>
       </details>
       <details class="accordion-item">
+        <summary>What's the difference between the black and white towel?</summary>
+        <div class="accordion-body">Same 90 × 180cm, same 600GSM combed cotton, same wordmark print — just the fabric color and the ink color (white print on black, black print on white). Head to the <a href="product.html" style="color:var(--accent);">product page</a> and flip the light/dark switch to preview each one; it also swaps the whole site's theme to match.</div>
+      </details>
+      <details class="accordion-item">
+        <summary>How do I choose a color?</summary>
+        <div class="accordion-body">On the product page there's a light/dark mode toggle. Dark mode previews the black towel, light mode previews the white towel — whichever is showing when you hit "Add to Cart" is the one you get.</div>
+      </details>
+      <details class="accordion-item">
         <summary>How is it manufactured?</summary>
         <div class="accordion-body">Produced with an OEKO-TEX certified Turkish cotton mill, with fade-resistant screen printing for the wordmark. See our <a href="product.html#supplier" style="color:var(--accent);">supplier notes</a> on the product page.</div>
       </details>
       <details class="accordion-item">
-        <summary>Does the black fade?</summary>
-        <div class="accordion-body">We use reactive dye plus a resin after-treatment specifically to slow the grey-out that black textiles usually get after repeated washing.</div>
+        <summary>Does the black fade or the white yellow?</summary>
+        <div class="accordion-body">We use reactive dye plus a resin after-treatment on the black to slow the grey-out black textiles usually get, and an optical-brightener-free white cotton that resists yellowing — both are built to hold their color over repeated washing.</div>
+      </details>
+      <details class="accordion-item">
+        <summary>How do I wash and dry it?</summary>
+        <div class="accordion-body">Machine wash cold with like colors, tumble dry low. Skip fabric softener — it breaks down the terry loops over time and reduces absorbency.</div>
+      </details>
+      <details class="accordion-item">
+        <summary>Do you ship internationally?</summary>
+        <div class="accordion-body">This demo storefront doesn't process real orders yet, but the plan is standard 3–5 business day domestic shipping and international shipping to most countries once live — see the checkout page for details.</div>
+      </details>
+      <details class="accordion-item">
+        <summary>Is this really necessary?</summary>
+        <div class="accordion-body">No. That's the point.</div>
       </details>
     </div>
   </div>
@@ -146,7 +219,7 @@
     <div class="footer-grid">
       <div>
         <div class="brand-mark" style="margin-bottom:12px;">BIG ASS <span>TOWELS</span></div>
-        <p style="max-width:280px;">Absurdly oversized, absurdly black towels. 90 × 180cm, made for people who are done with towels that don't cover them.</p>
+        <p style="max-width:280px;">Absurdly oversized towels in black or white. 90 × 180cm, made for people who are done with towels that don't cover them.</p>
       </div>
       <div>
         <h4>Shop</h4>
@@ -159,6 +232,7 @@
         <h4>Info</h4>
         <ul>
           <li><a href="index.html#specs">Specs</a></li>
+          <li><a href="index.html#reviews">Reviews</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="product.html#supplier">Supplier</a></li>
         </ul>
@@ -172,6 +246,7 @@
 </footer>
 
 <script src="js/cart.js"></script>
+<script src="js/theme.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

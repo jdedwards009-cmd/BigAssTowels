@@ -6,13 +6,15 @@ Black, the closest open Google Font to the reference logo art).
 
 ## What's here
 
-- `index.html` — homepage: hero wordmark, towel mockup, product teaser, reviews, FAQ
+- `index.html` — homepage: hero wordmark, towel photo, product teaser, reviews, FAQ
 - `product.html` — product detail page (spec table, colorway toggle, add-to-cart, reviews, supplier notes)
 - `about.html` — brand story, use cases (beach/bathroom/bedroom/gym), social links
 - `cart.html` — cart (localStorage-backed)
 - `checkout.html` — simulated checkout flow (no real payment processing — see below)
 - `css/styles.css`, `js/cart.js`, `js/theme.js`, `js/main.js` — styling, theme/colorway logic, cart logic
-- `assets/favicon.svg`, `assets/towel-texture.svg` — favicon and the procedural fabric texture
+- `assets/favicon.svg` — favicon
+- `assets/towel-white.webp`, `assets/towel-black.webp` — the product photos (see below)
+- `assets/ChatGPT Image Sep 17, 2026, 01_12_51 PM.png` — the original source photo, kept for provenance
 - `SUPPLIERS.md` — manufacturer research for producing the actual 90 × 180cm towel
 
 No build step or framework — it's plain HTML/CSS/JS, so it runs anywhere
@@ -27,16 +29,28 @@ python3 -m http.server 8000
 
 Or deploy the folder as-is to GitHub Pages, Netlify, Vercel, S3, etc.
 
-## The towel mockup
+## The towel photo
 
-The product image isn't a photo — it's a CSS/HTML mockup (`.towel` in
-`css/styles.css`) rendered at the real 90:180 aspect ratio with a fringed
-edge and the wordmark filling the fabric. The fabric texture itself
-(`assets/towel-texture.svg`) is a procedural bump-lit noise pattern (SVG
-`feTurbulence` + `feDiffuseLighting`) blended over the base color to read as
-combed-cotton terry rather than flat color, on both colorways. This keeps
-the shop dependency-free and crisp at any size; swap it for real product
-photography once samples come back from a supplier (see `SUPPLIERS.md`).
+`assets/towel-white.webp` is the real product photo. `assets/towel-black.webp`
+is generated from it: the fabric is darkened while preserving its original
+fold/shadow lighting, and the wordmark is inverted to white, using a smooth
+luminance-based blend (see the crop/recolor pipeline notes below) rather than
+a flat color invert, so it still reads as lit fabric rather than a photo
+negative. Both are optimized to ~140–250KB WebP files at 760px wide (plenty
+for the largest on-page display size).
+
+Every `.towel-photo` component in the markup renders **both** `<img>` tags;
+CSS shows/hides the right one based on `[data-towel]` on `<html>` (see
+`.towel-photo img[data-color]` rules in `css/styles.css`), which is what lets
+the colorway swap instantly with the theme toggle without any JS re-render.
+
+To regenerate `towel-black.webp` from a new source photo (e.g. a real product
+shot once samples come back — see `SUPPLIERS.md`), the approach is: crop out
+any studio-background margin, then remap luminance so the fabric darkens
+while its shadow/highlight structure is preserved, and the (near-black) ink
+inverts to white — a plain color invert instead flips the lighting direction
+and looks wrong. Ask Claude to regenerate it the same way, or reimplement
+with any image tool that supports a per-pixel luminance curve.
 
 ## Colorway + theme toggle
 
@@ -47,7 +61,7 @@ The product page's light/dark switch is also the color picker:
 
 Whichever is showing when "Add to Cart" is clicked is the variant added.
 The chosen theme persists via `localStorage` and is applied site-wide
-(including the homepage's towel mockups) via a no-flash inline script in
+(including the homepage's towel photo) via a no-flash inline script in
 every page's `<head>`. The page palette is driven by `[data-theme]` on
 `<html>`; the towel graphic's colorway is driven independently by
 `[data-towel]`, so cart thumbnails always show each line item's actual

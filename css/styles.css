@@ -3,10 +3,11 @@
    Theming: everything reads from CSS variables below.
 
    - [data-theme="light"] on <html> swaps the PAGE palette (background/text).
-   - [data-towel="white"] on <html> swaps the TOWEL GRAPHIC colorway. These
-     are deliberately independent: light mode surfaces the black towel
-     (contrast against a light page) and dark mode surfaces the white towel
-     (contrast against a dark page) — see js/theme.js.
+   - [data-towel="white"] on <html> swaps which towel PHOTO shows (.towel-photo
+     renders both colorways and shows/hides via this attribute). These are
+     deliberately independent: light mode surfaces the black towel (contrast
+     against a light page) and dark mode surfaces the white towel (contrast
+     against a dark page) — see js/theme.js.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -24,21 +25,6 @@
   --accent-contrast: #0a0a0a;
   --danger: #ff5c4d;
 
-  /* towel graphic — keyed off [data-towel], not [data-theme], so cart
-     thumbnails can always render the correct colorway for their line item */
-  --towel-fabric-1: #171717;
-  --towel-fabric-2: #060606;
-  --towel-sheen: rgba(255, 255, 255, 0.06);
-  --towel-ring: rgba(255, 255, 255, 0.05);
-  --towel-fringe-1: #1e1e1e;
-  --towel-fringe-2: #0a0a0a;
-  --towel-seam: rgba(0, 0, 0, 0.5);
-  --towel-text: #f4f3ee;
-  --towel-label: #b8b8ae;
-  --towel-shadow: rgba(0, 0, 0, 0.65);
-  --towel-tex-blend: soft-light;
-  --towel-tex-opacity: 0.9;
-
   --radius: 4px;
   --maxw: 1180px;
   --font-display: 'Archivo Black', 'Arial Black', Impact, sans-serif;
@@ -54,21 +40,6 @@
   --text-muted: #706c5e;
   --text-body: #45433a;
   --accent-hover: #c3ec2c;
-}
-
-:root[data-towel="white"] {
-  --towel-fabric-1: #ffffff;
-  --towel-fabric-2: #ebe9e2;
-  --towel-sheen: rgba(0, 0, 0, 0.05);
-  --towel-ring: rgba(0, 0, 0, 0.08);
-  --towel-fringe-1: #f6f5f0;
-  --towel-fringe-2: #e6e3d8;
-  --towel-seam: rgba(0, 0, 0, 0.14);
-  --towel-text: #0a0a0a;
-  --towel-label: #706c5e;
-  --towel-shadow: rgba(20, 18, 10, 0.22);
-  --towel-tex-blend: multiply;
-  --towel-tex-opacity: 0.5;
 }
 
 * { box-sizing: border-box; }
@@ -227,93 +198,35 @@ p { color: var(--text-body); margin: 0 0 1em; }
   flex-wrap: wrap;
 }
 
-/* ---------- Towel mockup (pure CSS, theme-driven) ---------- */
+/* ---------- Towel product photo ----------
+   Both colorways are real photos (assets/towel-white.webp, towel-black.webp).
+   Both <img> tags are always in the DOM; [data-towel] on <html> picks which
+   one is visible, so the photo flips instantly with the theme toggle. */
 .towel-stage {
   display: flex;
   justify-content: center;
   padding: 56px 0;
 }
-.towel {
+.towel-photo {
   position: relative;
   width: min(360px, 78vw);
   aspect-ratio: 90 / 180;
-  background:
-    radial-gradient(circle at 30% 20%, var(--towel-sheen), transparent 55%),
-    linear-gradient(180deg, var(--towel-fabric-1), var(--towel-fabric-2));
   border-radius: 6px;
-  box-shadow: 0 30px 70px var(--towel-shadow), inset 0 0 0 1px var(--towel-ring);
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
-  transition: background-color 0.25s ease;
-  container-type: inline-size;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
 }
-.towel--lg { width: min(400px, 82vw); }
-/* Procedural terry-cloth texture: a bump-lit noise SVG blended over the
-   fabric color. Blend mode/opacity flip per colorway (see --towel-tex-*). */
-.towel::after {
-  content: '';
+.towel-photo--lg { width: min(400px, 82vw); }
+.towel-photo img {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/towel-texture.svg');
-  background-size: cover;
-  mix-blend-mode: var(--towel-tex-blend);
-  opacity: var(--towel-tex-opacity);
-  pointer-events: none;
-}
-.towel__fringe {
-  height: 16px;
-  display: flex;
-  flex-shrink: 0;
-  position: relative;
-}
-.towel__fringe span {
-  flex: 1;
-  border-right: 1px solid var(--towel-seam);
-  background: linear-gradient(180deg, var(--towel-fringe-1), var(--towel-fringe-2));
-}
-.towel__body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  padding: 0 3%;
-  position: relative;
-}
-.towel__logo {
-  font-family: var(--font-display);
-  color: var(--towel-text);
-  text-align: center;
-  line-height: 0.86;
-  letter-spacing: -0.01em;
-  font-size: clamp(26px, 19cqw, 100px);
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
-.towel__logo small {
-  display: block;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.16em;
-  letter-spacing: 0.35em;
-  color: var(--towel-label);
-  margin-bottom: 10px;
-}
-.towel__tag {
-  position: absolute;
-  left: 50%;
-  bottom: 5%;
-  transform: translateX(-50%);
-  font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--towel-label);
-  text-transform: uppercase;
-  white-space: nowrap;
-  opacity: 0.75;
-}
+.towel-photo img[data-color="black"] { display: none; }
+:root[data-towel="black"] .towel-photo img[data-color="black"] { display: block; }
+:root[data-towel="black"] .towel-photo img[data-color="white"] { display: none; }
 
 .towel-badges {
   display: flex;
@@ -648,20 +561,12 @@ p { color: var(--text-body); margin: 0 0 1em; }
   width: 52px;
   height: 104px;
   border-radius: 3px;
-  background: linear-gradient(180deg, var(--towel-fringe-1), var(--towel-fabric-2));
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 8px;
-  color: var(--towel-text);
-  text-align: center;
-  line-height: 1.1;
-  padding: 4px;
+  background-size: cover;
+  background-position: center top;
 }
-.cart-thumb--black { background: linear-gradient(180deg, #141414, #050505); color: #f4f3ee; }
-.cart-thumb--white { background: linear-gradient(180deg, #ffffff, #ececec); color: #0a0a0a; }
+.cart-thumb--black { background-image: url('../assets/towel-black.webp'); }
+.cart-thumb--white { background-image: url('../assets/towel-white.webp'); }
 .cart-item-name { font-weight: 700; font-size: 14px; }
 .cart-item-meta { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 .remove-link { font-size: 12px; color: var(--danger); cursor: pointer; text-decoration: underline; background:none; border:none; padding:0; }
